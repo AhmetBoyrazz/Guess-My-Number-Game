@@ -8,6 +8,10 @@
 const randomNumber = Math.round(Math.random() * 100);
 console.log(randomNumber);
 
+//? Variables
+let score = 10;
+let topScore = 0;
+
 //* CheckBtn basildiginda kontrolleri yap
 document.querySelector(".check-btn").addEventListener("click", () =>{
     const guessInput = Number(document.querySelector(".guess-input").value);
@@ -19,9 +23,18 @@ document.querySelector(".check-btn").addEventListener("click", () =>{
         msg.innerText = "Please enter a Number";
         //! eger rastgele == input.value
     } else if (randomNumber === guessInput) {
-        msg.innerText = "Congrats You Win";
+        msg.innerHTML = `Congrats You Win <i class="fa-solid fa-face-grin-hearts"></i>` ;
         // document.querySelector("body").style.background = "green";
         body.className = "bg-success"
+
+        if (score > topScore) {
+            topScore = score;
+            document.querySelector(".top-score").textContent = topScore
+        }
+
+        document.querySelector(".secret-number").textContent = randomNumber
+    }else {
+        score--;
     }
 });
 
