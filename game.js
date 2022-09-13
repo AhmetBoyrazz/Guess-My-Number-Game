@@ -39,6 +39,7 @@ document.querySelector(".check-btn").addEventListener("click", () => {
         : (msg.innerHTML = `<i class="fa-solid fa-arrow-trend-up fa-2x"></i> INCREASE `);
     } else {
       msg.innerHTML = `You Lost <i class="fa-regular fa-face-sad-tear fa-2x"></i>`;
+      document.querySelector(".secret-number").textContent = randomNumber;
       body.className = "bg-danger";
       document.querySelector(".check-btn").disabled = true;
     }
@@ -46,6 +47,18 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     document.querySelector(".score").textContent = score;
   }
 });
+
+//* again basildiginda oyunu baslangic degerlerinde kur
+document.querySelector(".again-btn").addEventListener("click", () => {
+  score = 10;
+  const randomNumber = Math.round(Math.random() * 100);
+  console.log(randomNumber);
+});
+
+
+
+
+
 
 //? eger score > topScore
 //?     topScore = score
