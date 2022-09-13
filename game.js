@@ -12,6 +12,7 @@ console.log(randomNumber);
 document.querySelector(".check-btn").addEventListener("click", () =>{
     const guessInput = Number(document.querySelector(".guess-input").value);
     const msg = document.querySelector(".msg")
+    const body = document.querySelector("body");
     //? eger input girilmediyse kullaniciya uyari ver
 
     if (!guessInput) {
@@ -19,6 +20,8 @@ document.querySelector(".check-btn").addEventListener("click", () =>{
         //! eger rastgele == input.value
     } else if (randomNumber === guessInput) {
         msg.innerText = "Congrats You Win";
+        // document.querySelector("body").style.background = "green";
+        body.className = "bg-success"
     }
 });
 
