@@ -4,12 +4,18 @@
 //*======================================
 
 //? 1-100 arasinda rasgele bir sayi tut.
-const randomNumber = Math.round(Math.random() * 100);
+let randomNumber = Math.round(Math.random() * 100);
 console.log(randomNumber);
 
 //? Variables
 let score = 10;
-let topScore = 0;
+// let topScore = 0;
+
+//? localStorage'de topScore adiyla bir degisken olustur.
+let topScore = localStorage.getItem("topScore") || 0;
+
+//? DOM'daki top-score degerini localStorage'den okuyarak guncelle.
+document.querySelector(".top-score").textContent = topScore;
 
 //* CheckBtn basildiginda kontrolleri yap
 document.querySelector(".check-btn").addEventListener("click", () => {
@@ -26,12 +32,16 @@ document.querySelector(".check-btn").addEventListener("click", () => {
     body.className = "bg-success";
     document.querySelector(".check-btn").disabled = true;
     if (score > topScore) {
-      topScore = score;
-      document.querySelector(".top-score").textContent = topScore;
+      // topScore = score;
+
+      //? localStorage'deki topScore degiskenini guncelle
+      localStorage.setItem("topScore", score);
+      //? DOM'daki top-score degerini guncelle
+      document.querySelector(".top-score").textContent = score;
     }
     document.querySelector(".secret-number").textContent = randomNumber;
-    
-    //! eger rasgele == input.value
+
+    //! eger rasgele!= input.value
   } else {
     score--;
     if (score > 0) {
@@ -49,16 +59,17 @@ document.querySelector(".check-btn").addEventListener("click", () => {
   }
 });
 
-//* again basildiginda oyunu baslangic degerlerinde kur
+//* again basildiginda oyunu baslangic dgerlerin kur
 document.querySelector(".again-btn").addEventListener("click", () => {
   score = 10;
   document.querySelector(".score").textContent = score;
-  const randomNumber = Math.round(Math.random() * 100);
+  randomNumber = Math.round(Math.random() * 100);
   document.querySelector(".secret-number").textContent = "?";
   console.log(randomNumber);
   document.querySelector(".check-btn").disabled = false;
   document.querySelector("body").classList.remove("bg-success", "bg-danger");
   document.querySelector(".guess-input").value = "";
+  document.querySelector(".msg").innerText = `Starting..`;
 });
 
 
@@ -81,3 +92,12 @@ document.querySelector(".again-btn").addEventListener("click", () => {
 //? Uzgunuz kaybetiniz.
 
 //* againBtn basildiginda kontrolleri yap
+
+//! LOCALSTORAGE- SESSIONSTORAGE
+// myObj = { a: 1, b: 2, c: 3 };
+// localStorage.setItem("OBJ", JSON.stringify(myObj));
+// const readObj = localStorage.getItem("OBJ");
+// const readOBJ = JSON.parse(localStorage.getItem("OBJ"));
+// console.log(typeof readObj);
+// console.log(typeof readOBJ);
+// console.log(readOBJ);
