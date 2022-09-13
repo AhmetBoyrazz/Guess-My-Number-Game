@@ -72,7 +72,11 @@ document.querySelector(".again-btn").addEventListener("click", () => {
   document.querySelector(".msg").innerText = `Starting..`;
 });
 
-
+document.querySelector(".guess-input").addEventListener(`keydown` ,(e) => {
+  if(e.code === "Enter"){
+    document.querySelector(".check-btn").click();
+  }
+})
 
 
 
